@@ -45,3 +45,14 @@ python3 download_vimeo.py 'PLAYLIST_URL' -o video.mp4 \
 Run `python3 download_vimeo.py --help` for all options. Vimeo's signed URLs
 can expire; if a previously valid URL returns HTTP 403, capture a fresh
 playlist URL before retrying.
+
+## Development checks
+
+Install the pinned quality tools and run the same checks as GitHub Actions:
+
+```sh
+python3 -m pip install --requirement requirements-dev.txt
+black --check --diff download_vimeo.py
+pylint download_vimeo.py
+pyright
+```
