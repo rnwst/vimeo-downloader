@@ -27,6 +27,8 @@ import urllib.parse
 import urllib.request
 
 TrackKind = Literal["video", "audio"]
+PACKAGE_NAME = "vimeo-playlist-downloader"
+__version__ = "0.1.0"
 
 
 class DownloadError(Exception):
@@ -190,7 +192,7 @@ def _positive_float(value: str) -> float:
 
 
 def _parse_headers(values: Sequence[str], referer: str | None) -> dict[str, str]:
-    headers = {"User-Agent": "vimeo-playlist-downloader/1.0"}
+    headers = {"User-Agent": f"{PACKAGE_NAME}/{__version__}"}
     for value in values:
         name, separator, content = value.partition(":")
         name = name.strip()
@@ -626,6 +628,11 @@ def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         description="Download and assemble a Vimeo JSON/DASH playlist.",
         formatter_class=argparse.ArgumentDefaultsHelpFormatter,
+    )
+    parser.add_argument(
+        "--version",
+        action="version",
+        version=f"%(prog)s {__version__}",
     )
     parser.add_argument("playlist_url", help="URL of playlist.json")
     parser.add_argument("-o", "--output", help="destination file (normally .mp4)")

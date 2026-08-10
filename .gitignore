@@ -1,0 +1,17 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+.mypy_cache/
+.pytest_cache/
+.ruff_cache/
+.venv/
+build/
+dist/
+venv/
+
+# Local playlists and downloaded media
+/playlist.json
+*.m4v
+*.mkv
+*.mov
+*.mp4
